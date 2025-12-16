@@ -1,0 +1,266 @@
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+}
+
+/* ========== GLOBAL ========== */
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#ffffff; /* putih bersih */
+  color:#111827;
+}
+
+/* ====== WRAPPER BACKGROUND PUTIH + GRADIENT HIJAU BERGERAK ====== */
+.bg-animated{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  overflow:hidden;
+  background:#ffffff;
+}
+
+/* overlay gradient hijau neon yang bergerak pelan */
+.bg-overlay{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    radial-gradient(circle at 0% 0%,
+      rgba(46,190,138,0.0) 0%,
+      rgba(46,190,138,0.0) 40%,
+      rgba(46,190,138,0.30) 70%),
+    radial-gradient(circle at 100% 100%,
+      rgba(93,217,181,0.0) 0%,
+      rgba(93,217,181,0.0) 40%,
+      rgba(93,217,181,0.35) 70%);
+  background-repeat:no-repeat;
+  animation:neon-bg 14s ease-in-out infinite alternate;
+}
+
+/* konten utama di paling depan */
+.welcome-shell{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  padding:40px 16px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ========== TEKS WELCOME (ANTONIO) ========== */
+.welcome-title{
+  font-size:6.2rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#2ebe8a;
+  font-family:"Antonio", system-ui, sans-serif;
+  margin-bottom:28px;
+
+  opacity:0;
+  transform:translateY(30px) scale(.96);
+  animation:welcome-in .7s ease-out forwards;
+  animation-delay:.15s;
+}
+
+@keyframes welcome-in{
+  0%{
+    opacity:0;
+    transform:translateY(30px) scale(.96);
+    letter-spacing:.2em;
+  }
+  60%{
+    opacity:1;
+    transform:translateY(-6px) scale(1.02);
+    letter-spacing:.05em;
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    letter-spacing:.04em;
+  }
+}
+
+/* ========== LOGO BULAT + PULSE ========== */
+.welcome-logo{
+  margin-top:4px;
+  margin-bottom:40px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  opacity:0;
+  transform:translateY(18px);
+  animation:logo-fade-up .6s ease-out forwards;
+  animation-delay:.45s;
+}
+
+.welcome-logo-circle{
+  position:relative;
+  width:86px;
+  height:86px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 20%, #d1f4e8, #5dd9b5 35%, #2ebe8a 70%, #1da876);
+  box-shadow:0 0 24px rgba(45,190,138,.7);
+  overflow:hidden;
+}
+
+/* garis pulse */
+.pulse-line{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:70px;
+  height:50px;
+  transform:translate(-50%, -50%);
+}
+
+.pulse-line::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:linear-gradient(to right,#ffffff,#ffffff);
+  background-size:100% 3px;
+  background-repeat:no-repeat;
+  background-position:left center;
+  clip-path:polygon(
+    0% 50%,
+    10% 50%,
+    20% 30%,
+    28% 75%,
+    36% 20%,
+    45% 80%,
+    54% 35%,
+    64% 50%,
+    74% 25%,
+    82% 70%,
+    90% 40%,
+    100% 50%
+  );
+  animation:pulse-beat 1.3s ease-out infinite;
+}
+
+@keyframes pulse-beat{
+  0%{
+    transform:scale(0.7);
+    opacity:0;
+  }
+  25%{
+    transform:scale(1.15);
+    opacity:1;
+  }
+  60%{
+    transform:scale(1);
+    opacity:0.9;
+  }
+  100%{
+    transform:scale(0.8);
+    opacity:0;
+  }
+}
+
+/* teks di bawah bulatan */
+.welcome-logo-text{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.welcome-logo-main{
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.08em;
+  color:#047857;
+}
+.welcome-logo-sub{
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#2ebe8a;
+  opacity:.9;
+}
+
+/* ========== TOMBOL MASUK SEKARANG ========== */
+.welcome-actions{
+  margin-top:0;
+  opacity:0;
+  transform:translateY(20px) scale(.96);
+  animation:cta-in .6s ease-out forwards;
+  animation-delay:.65s;
+}
+
+.welcome-btn-primary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 48px;
+  border-radius:999px;
+  font-size:1rem;
+  font-weight:600;
+  color:#f9fafb;
+  background-image:linear-gradient(135deg,#2ebe8a,#5dd9b5);
+  text-decoration:none;
+  box-shadow:0 10px 30px rgba(46,190,138,.5);
+  border:none;
+  transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+
+.welcome-btn-primary:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.04);
+  box-shadow:0 14px 36px rgba(45,190,138,.6);
+}
+
+/* ========== ANIMASI LOGO & CTA ========== */
+@keyframes logo-fade-up{
+  0%{
+    opacity:0;
+    transform:translateY(18px) scale(.96);
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes cta-in{
+  0%{
+    opacity:0;
+    transform:translateY(20px) scale(.96);
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* ========== ANIMASI BACKGROUND NEON ========== */
+@keyframes neon-bg{
+  0%{
+    background-position:0% 0%, 100% 100%;
+  }
+  50%{
+    background-position:25% 40%, 75% 60%;
+  }
+  100%{
+    background-position:60% 80%, 40% 20%;
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:768px){
+  .welcome-title{
+    font-size:3.8rem;
+    letter-spacing:.03em;
+  }
+  .welcome-logo-circle{
+    width:74px;
+    height:74px;
+  }
+}

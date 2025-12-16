@@ -1,0 +1,414 @@
+/* ===== RESET & GLOBAL ===== */
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:#062821;
+    background:
+        radial-gradient(circle at 0% 0%,   #d1f4e8 0%, transparent 55%),
+        radial-gradient(circle at 100% 100%, #a7f3d0 0%, transparent 55%),
+        linear-gradient(145deg, #f9fffb, #e6f7f0);
+    animation:bgFade .5s ease-out;
+}
+
+/* ===== CONTAINER UTAMA ===== */
+.register-page{
+    width:100%;
+    padding:24px;
+    display:flex;
+    justify-content:center;
+}
+
+.register-card{
+    width:100%;
+    max-width:880px;
+    background:rgba(255,255,255,0.92);
+    border-radius:24px;
+    box-shadow:
+        0 24px 80px rgba(15,118,110,0.24),
+        0 0 0 1px rgba(148,163,184,0.20);
+    backdrop-filter:blur(18px);
+    padding:26px 34px 30px;
+    opacity:0;
+    transform:translateY(26px) scale(0.97);
+    animation:cardEnter .55s cubic-bezier(0.16,0.84,0.44,1) .1s forwards;
+}
+
+/* ===== HEADER BRAND (SAMA LOGIN) ===== */
+.register-hero{
+    text-align:left;
+    margin-bottom:18px;
+}
+
+.brand-row{
+    display:flex;
+    align-items:center;
+    gap:0.9rem;
+    margin-bottom:4px;
+    padding:0.4rem 0.8rem 0.4rem 0.2rem;
+    border-radius:999px;
+    animation:slideDownFade .7s ease-out both;
+}
+
+.brand-circle{
+    position:relative;
+    width:60px;
+    height:60px;
+    border-radius:999px;
+    background:radial-gradient(circle at 30% 20%, #d1f4e8, #5dd9b5 35%, #2ebe8a 70%, #1da876);
+    box-shadow:0 0 24px rgba(45,190,138,0.7);
+    flex-shrink:0;
+    overflow:hidden;
+}
+
+.pulse-line{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:48px;
+    height:34px;
+    transform:translate(-50%, -50%);
+}
+
+.pulse-line::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:linear-gradient(to right,#ffffff,#ffffff);
+    background-size:100% 3px;
+    background-repeat:no-repeat;
+    background-position:left center;
+    clip-path:polygon(
+        0% 50%,
+        10% 50%,
+        20% 30%,
+        28% 75%,
+        36% 20%,
+        45% 80%,
+        54% 35%,
+        64% 50%,
+        74% 25%,
+        82% 70%,
+        90% 40%,
+        100% 50%
+    );
+    animation:pulse-beat 1.3s ease-out infinite;
+}
+
+@keyframes pulse-beat{
+    0%{
+        transform:scale(0.7);
+        opacity:0;
+    }
+    25%{
+        transform:scale(1.15);
+        opacity:1;
+    }
+    60%{
+        transform:scale(1);
+        opacity:0.9;
+    }
+    100%{
+        transform:scale(0.8);
+        opacity:0;
+    }
+}
+
+.brand-text{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.brand-main{
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:0.08em;
+    color:#047857;
+}
+
+.brand-sub{
+    font-size:9px;
+    font-weight:600;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#2ebe8a;
+    opacity:0.9;
+}
+
+/* ===== ALERT ===== */
+.alert{
+    border-radius:12px;
+    padding:10px 12px;
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.alert-error{
+    background:#fef2f2;
+    border:1px solid #fecaca;
+    color:#b91c1c;
+}
+
+.alert-success{
+    background:#ecfdf5;
+    border:1px solid #bbf7d0;
+    color:#166534;
+}
+
+.alert ul{
+    padding-left:16px;
+}
+
+/* ===== FORM ===== */
+.register-form{
+    margin-top:8px;
+    animation:contentFade .7s ease-out .25s both;
+}
+
+.field-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:12px;
+}
+
+.field label{
+    font-size:12px;
+    font-weight:600;
+    color:#111827;
+    margin-bottom:4px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    border-radius:11px;
+    border:1px solid rgba(148,163,184,0.6);
+    padding:8px 10px;
+    font-size:13px;
+    outline:none;
+    background:rgba(249,250,251,0.95);
+    transition:border-color .15s ease, box-shadow .15s ease, background-color .15s ease, transform .12s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    background:#ffffff;
+    border-color:#2ebe8a;
+    box-shadow:0 0 0 0.14rem rgba(46,190,138,0.35);
+    transform:translateY(-1px);
+}
+
+/* ===== FOTO PROFIL ===== */
+.profile-photo-wrapper{
+    margin-bottom:18px;
+    display:flex;
+    justify-content:center;
+}
+
+.profile-photo-label{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    cursor:pointer;
+}
+
+.profile-photo-circle{
+    width:86px;
+    height:86px;
+    border-radius:999px;
+    background:radial-gradient(circle at 30% 20%,#d1fae5,#6ee7b7 35%,#22c55e 70%,#14b8a6);
+    box-shadow:0 0 24px rgba(34,197,94,0.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    animation:pulseGlow 1.6s ease-in-out infinite alternate;
+}
+
+.profile-photo-plus{
+    font-size:32px;
+    color:#ecfdf5;
+    font-weight:700;
+}
+
+.profile-photo-text{
+    margin-top:8px;
+    font-size:12px;
+    color:#047857;
+}
+
+.profile-photo-input{
+    display:none;
+}
+
+/* ===== GOAL CARDS ===== */
+.goal-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:10px;
+    margin-top:4px;
+}
+
+.goal-card{
+    border-radius:14px;
+    padding:10px 12px;
+    background:#f0fdf4;
+    border:1px solid rgba(16,185,129,0.25);
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.goal-title{
+    font-size:13px;
+    font-weight:600;
+    color:#047857;
+}
+
+.goal-desc{
+    font-size:11px;
+    color:#4b5563;
+    margin-top:2px;
+}
+
+.goal-card::before{
+    content:"";
+    position:absolute;
+    inset:-30%;
+    background:radial-gradient(circle at 0 0,rgba(45,212,191,0.22),transparent 60%);
+    opacity:0;
+    transition:opacity .15s ease;
+}
+
+.goal-card:hover{
+    transform:translateY(-1px);
+    box-shadow:0 10px 22px rgba(16,185,129,0.25);
+    border-color:rgba(5,150,105,0.7);
+}
+
+.goal-card:hover::before{
+    opacity:1;
+}
+
+/* ===== BUTTON (SAMA DENGAN LOGIN) ===== */
+.btn-primary{
+    width:100%;
+    margin-top:6px;
+    border:none;
+    border-radius:999px;
+    padding:9px 12px;
+    font-size:0.95rem;
+    font-weight:600;
+    cursor:pointer;
+    color:#f9fafb;
+    background-image:linear-gradient(135deg,#2ebe8a,#5dd9b5);
+    box-shadow:0 12px 32px rgba(46,190,138,0.55);
+    transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+
+.btn-primary:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.04);
+    box-shadow:0 16px 40px rgba(45,190,138,0.65);
+}
+
+.btn-primary:active{
+    transform:translateY(0);
+    box-shadow:0 8px 24px rgba(45,190,138,0.55);
+}
+
+/* ===== LINK LOGIN ===== */
+.login-link{
+    margin-top:10px;
+    font-size:12px;
+    text-align:center;
+    color:#6b7280;
+}
+
+.login-link a{
+    color:#0f766e;
+    font-weight:600;
+    text-decoration:none;
+    transition:color .15s ease, transform .12s ease;
+}
+
+.login-link a:hover{
+    text-decoration:underline;
+    transform:translateY(-1px);
+}
+
+/* ===== ANIMASI KEYFRAMES ===== */
+@keyframes bgFade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes cardEnter{
+    0%{
+        opacity:0;
+        transform:translateY(26px) scale(0.97);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes contentFade{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes slideDownFade{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes pulseGlow{
+    from{box-shadow:0 0 18px rgba(34,197,94,0.55);}
+    to{box-shadow:0 0 30px rgba(45,212,191,0.85);}
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:640px){
+    .register-card{
+        padding:20px 18px 22px;
+        border-radius:18px;
+    }
+    .brand-main{
+        font-size:13px;
+    }
+}

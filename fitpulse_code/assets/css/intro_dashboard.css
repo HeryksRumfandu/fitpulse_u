@@ -1,0 +1,239 @@
+:root{
+    --muted:#6b7280;
+    --brand-green:#2ebe8a;
+    --brand-green-soft:#5dd9b5;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family:system-ui,"Segoe UI",Roboto,sans-serif;
+}
+
+/* LAYER UTAMA + ANIMASI MASUK */
+#intro-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 0% 0%,   #d1f4e8 0%, transparent 55%),
+        radial-gradient(circle at 100% 100%, #a7f3f0 0%, transparent 55%),
+        linear-gradient(145deg,#f9fffb,#e6f7f0);
+
+    opacity:0;
+    transform:translateY(20px);
+    animation:introFadeIn .7s ease-out forwards;
+}
+
+@keyframes introFadeIn{
+    from{
+        opacity:0;
+        transform:translateY(24px);
+        filter:blur(3px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+    }
+}
+
+/* ===== VIDEO BACKGROUND (1 VIDEO) ===== */
+.intro-video-wrapper{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+}
+
+.intro-video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* layer putih agak gelap menutup video agar samar */
+.intro-dim{
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0.80);
+    backdrop-filter:blur(4px);
+}
+
+/* ===== KONTEN TEKS ===== */
+.intro-content{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    padding:24px;
+    max-width:1000px;
+}
+
+/* animasi naik untuk tiap elemen */
+.intro-hello,
+.intro-main,
+.intro-journey,
+.intro-start-wrapper{
+    opacity:0;
+    transform:translateY(16px);
+    animation:contentUp .6s ease-out forwards;
+}
+
+.intro-main{ animation-delay:.15s; }
+.intro-journey{ animation-delay:.30s; }
+.intro-start-wrapper{ animation-delay:.45s; }
+
+@keyframes contentUp{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* HALO NAMA */
+.intro-hello{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:0.20em;
+    text-transform:uppercase;
+    color:#020617;
+    margin-bottom:18px;
+    font-family:"Montserrat",system-ui,sans-serif;
+}
+
+/* LETS START / YOUR */
+.intro-main{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    margin-bottom:8px;
+}
+
+.intro-big{
+    font-size:110px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+
+.intro-big-main{
+    letter-spacing:0.08em;
+    color:var(--brand-green);
+    text-shadow:0 24px 50px rgba(15,23,42,0.25);
+    font-family:"Montserrat",system-ui,sans-serif;
+}
+
+.intro-big-sub{
+    letter-spacing:0.02em;
+    color:#cbd5f5;
+    text-shadow:0 18px 40px rgba(15,23,42,0.35);
+    font-family:"Poppins",system-ui,sans-serif;
+}
+
+/* journey – kapsul hijau */
+.intro-journey{
+    display:inline-block;
+    font-size:88px;
+    font-weight:800;
+    text-transform:lowercase;
+    color:#f9fafb;
+    margin-top:12px;
+    margin-bottom:32px;
+    letter-spacing:0.03em;
+    font-family:"Poppins",system-ui,sans-serif;
+
+    background:linear-gradient(135deg,var(--brand-green),var(--brand-green-soft));
+    padding:10px 40px;
+    border-radius:999px;
+    box-shadow:0 18px 40px rgba(34,197,94,0.55);
+}
+
+/* ===== TOMBOL START ===== */
+.intro-start-wrapper{
+    margin-top:8px;
+}
+
+.intro-start-btn{
+    display:inline-block;
+    text-decoration:none;
+    text-align:center;
+
+    border:none;
+    padding:16px 54px;
+    border-radius:999px;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:0.10em;
+    text-transform:uppercase;
+    cursor:pointer;
+    color:#f9fafb;
+    background-image:linear-gradient(135deg,var(--brand-green),var(--brand-green-soft));
+    box-shadow:
+        0 0 0 1px rgba(46,190,138,0.65),
+        0 0 18px rgba(46,190,138,0.8),
+        0 22px 54px rgba(34,197,94,0.75);
+    transition:
+        transform .14s ease,
+        box-shadow .14s ease,
+        filter .14s ease;
+    font-family:"Montserrat",system-ui,sans-serif;
+
+    animation:neonPulse 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse{
+    from{
+        box-shadow:
+          0 0 0 1px rgba(46,190,138,0.55),
+          0 0 16px rgba(46,190,138,0.75),
+          0 18px 48px rgba(34,197,94,0.7);
+    }
+    to{
+        box-shadow:
+          0 0 0 2px rgba(46,190,138,0.9),
+          0 0 26px rgba(46,190,138,0.95),
+          0 24px 64px rgba(34,197,94,0.9);
+    }
+}
+
+.intro-start-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+    filter:brightness(1.08);
+}
+
+.intro-start-btn:active{
+    transform:translateY(0) scale(0.99);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:992px){
+    .intro-big{
+        font-size:82px;
+    }
+    .intro-journey{
+        font-size:60px;
+    }
+}
+
+@media (max-width:768px){
+    .intro-hello{
+        font-size:20px;
+        letter-spacing:0.12em;
+    }
+    .intro-big{
+        font-size:50px;
+    }
+    .intro-journey{
+        font-size:36px;
+        margin-bottom:24px;
+        padding:8px 28px;
+    }
+    .intro-start-btn{
+        padding:12px 32px;
+        font-size:16px;
+    }
+}

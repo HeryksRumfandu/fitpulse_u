@@ -1,0 +1,375 @@
+:root{
+  --muted:#6b7280;
+  --accent1:#22c55e;
+  --accent2:#22d3ee;
+}
+
+/* background sama dashboard */
+body{
+  margin:0;
+  font-family:system-ui,"Segoe UI",Roboto,sans-serif;
+  background:
+    radial-gradient(circle at 0% 0%,   #d1f4e8 0%, transparent 55%),
+    radial-gradient(circle at 100% 100%, #a7f3f0 0%, transparent 55%),
+    linear-gradient(145deg,#f9fffb,#e6f7f0);
+  color:#071022;
+}
+
+/* layout utama – sama grid dengan dashboard */
+.app{
+  max-width:1400px;
+  margin:24px auto;
+  padding:12px;
+  display:grid;
+  grid-template-columns:78px 1fr 360px;
+  gap:16px;
+  align-items:flex-start;
+}
+
+/* ===== SIDEBAR HIJAU (COPY DARI DASHBOARD) ===== */
+.sidebar{
+  background:linear-gradient(180deg,#0f766e,#047857);
+  color:#ecfdf5;
+  border-radius:24px;
+  padding:18px 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  box-shadow:0 24px 60px rgba(4,120,87,0.45);
+  height:calc(100vh - 48px);
+  position:sticky;
+  top:24px;
+}
+
+.logo{
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:18px;
+  background:radial-gradient(circle at 30% 20%,#bbf7d0,#22c55e 45%,#16a34a 80%);
+  color:#022c22;
+  box-shadow:0 10px 24px rgba(22,163,74,0.7);
+  margin-bottom:14px;
+}
+
+.top-nav,
+.bottom-nav{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+
+.bottom-nav{margin-top:auto;}
+
+.nav-ico{
+  width:48px;
+  height:40px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:none;
+  background:transparent;
+  color:rgba(240,253,250,0.7);
+  cursor:pointer;
+  position:relative;
+  transition:background-color .16s ease,
+             color .16s ease,
+             box-shadow .16s ease,
+             transform .12s ease;
+}
+
+.nav-ico i{font-size:18px;}
+
+.nav-ico:hover{
+  background:rgba(15,118,110,0.35);
+  box-shadow:0 8px 22px rgba(15,23,42,0.35);
+  transform:translateY(-1px);
+}
+
+/* kapsul putih saat active – HARUS SAMA SEPERTI DASHBOARD */
+.nav-ico.active{
+  background:#f9fafb;
+  color:#0f766e;
+  box-shadow:0 10px 26px rgba(15,23,42,0.4);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.title{
+  font-size:22px;
+  font-weight:800;
+}
+
+.stat-muted{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.controls .filter-btn{
+  font-size:12px;
+  padding-inline:10px;
+}
+
+/* section 2 kolom: list plan & form */
+.section-grid{
+  display:grid;
+  grid-template-columns:1.15fr 1fr;
+  gap:12px;
+}
+
+.card{
+  background:#ffffff;
+  border-radius:16px;
+  padding:14px 14px 16px;
+  box-shadow:0 18px 40px rgba(2,6,23,0.06);
+  border:1px solid rgba(0,0,0,0.04);
+}
+
+.card-head-flex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+
+.card-head-flex strong{font-size:15px;}
+
+.plan-list-card{min-height:260px;}
+.plan-form-card{min-height:260px;}
+
+.btn-create{
+  font-size:12px;
+}
+
+/* ===== TABEL RENCANA ===== */
+.plan-table{
+  margin-top:10px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,0.06);
+  overflow:hidden;
+}
+
+.plan-table-header,
+.plan-row{
+  display:grid;
+  grid-template-columns: 2.3fr 1fr 1.4fr 1.3fr 1.1fr 1.4fr;
+  gap:8px;
+  align-items:center;
+  padding:8px 12px;
+  font-size:12px;
+}
+
+.plan-table-header{
+  background:#f3f4f6;
+  font-weight:600;
+  color:#4b5563;
+}
+
+.plan-row{
+  border-top:1px solid rgba(15,23,42,0.04);
+  background:#ffffff;
+}
+
+.plan-row:nth-child(even){
+  background:#f9fafb;
+}
+
+.plan-row .plan-name{
+  font-weight:600;
+  font-size:13px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:3px 8px;
+  border-radius:999px;
+  font-size:11px;
+}
+
+.badge-preset{
+  background:rgba(59,130,246,0.10);
+  color:#1d4ed8;
+}
+
+.badge-custom{
+  background:rgba(250,204,21,0.12);
+  color:#92400e;
+}
+
+.btn-xs{
+  --bs-btn-padding-y:2px;
+  --bs-btn-padding-x:8px;
+  --bs-btn-font-size:11px;
+}
+
+/* empty state */
+.empty-state{
+  padding:14px;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* ===== FORM WORKOUT PLAN ===== */
+.plan-form{
+  margin-top:10px;
+}
+
+.form-label{
+  font-size:13px;
+  color:#374151;
+}
+
+.form-control{
+  font-size:13px;
+}
+
+/* select & textarea */
+.select-rounded{
+  border-radius:999px;
+  padding-inline:1rem;
+  font-size:13px;
+}
+
+/* day chips */
+.day-chip-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:4px;
+}
+
+.day-chip{
+  border-radius:999px;
+  padding:5px 10px;
+  font-size:12px;
+  border:1px solid rgba(148,163,184,0.7);
+  color:#374151;
+  cursor:pointer;
+  background:#ffffff;
+  transition:all .15s ease;
+}
+
+.day-chip.active{
+  border-color:#22c55e;
+  background:rgba(34,197,94,0.12);
+  color:#065f46;
+  box-shadow:0 0 0 1px rgba(34,197,94,0.3);
+}
+
+/* intensity pills */
+.intensity-grid{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+
+.intensity-pill{
+  border-radius:999px;
+  padding:5px 12px;
+  font-size:12px;
+  border:1px solid rgba(148,163,184,0.7);
+  color:#374151;
+  cursor:pointer;
+  background:#ffffff;
+  transition:all .15s ease;
+}
+
+.intensity-pill.active{
+  border-color:#22d3ee;
+  background:rgba(34,211,238,0.12);
+  color:#0369a1;
+  box-shadow:0 0 0 1px rgba(34,211,238,0.3);
+}
+
+.textarea-soft{
+  border-radius:12px;
+  font-size:13px;
+  resize:vertical;
+}
+
+/* button style sama seperti profil */
+.btn-green{
+  border:none;
+  border-radius:999px;
+  background-image:linear-gradient(135deg,#2ebe8a,#5dd9b5);
+  color:#f9fafb;
+  font-weight:600;
+  font-size:0.9rem;
+  transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  box-shadow:0 12px 32px rgba(46,190,138,0.55);
+}
+
+.btn-green:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.04);
+  box-shadow:0 16px 40px rgba(45,190,138,0.65);
+}
+
+.btn-ghost{
+  border-radius:999px;
+  border:1px solid rgba(16,185,129,0.28);
+  background-color:rgba(236,253,245,0.9);
+  color:#047857;
+  font-weight:500;
+  font-size:0.9rem;
+  transition:background-color .12s ease, transform .12s ease, box-shadow .12s ease;
+}
+
+.btn-ghost:hover{
+  background-color:rgba(209,250,229,1);
+  transform:translateY(-1px);
+  box-shadow:0 8px 22px rgba(16,185,129,0.35);
+}
+
+/* ===== RIGHT SIDEBAR ===== */
+.right{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.tips-card .tips-list{
+  margin-top:8px;
+  padding-left:18px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.summary-card .summary-row{
+  display:flex;
+  justify-content:space-between;
+  margin-top:6px;
+  font-size:13px;
+}
+
+/* RESPONSIVE */
+@media (max-width:1100px){
+  .app{
+    grid-template-columns:70px 1fr;
+  }
+  .right{display:none;}
+  .section-grid{
+    grid-template-columns:1fr;
+  }
+}
